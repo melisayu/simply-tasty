@@ -1,18 +1,41 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App"/>
+  <div class="container">
+
+    <p>Welcome</p>
+    <h1>Its all simply tasty</h1>
+    <Button :buttonText="buttonText"></Button>
+    <p>
+      Find your tastiest recipes here
+    </p>
+    <div>
+      Gambar makanan
+    </div>
+
+    <h2>Categories</h2>
+    <div>
+      Category cards
+    </div>
+
+    <h2>Our Tastiest Recipes This Month</h2>
+    <div>
+      Card and Preview
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
-import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
+import Button from "@/components/Button";
 
-export default Vue.extend({
-  name: 'Home',
+export default {
+  name: "home",
   components: {
-    HelloWorld,
+    Button,
   },
-});
+  data() {
+    return {
+      buttonText: "I want to eat"
+    }
+  }
+}
+
 </script>
