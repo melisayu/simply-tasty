@@ -22,8 +22,8 @@ export default {
 
 a.button {
   background: $main-color;
-  padding: 8px 20px;
-  border-radius: 4px;
+  padding: 12px 20px;
+  border-radius: 24px;
   color: white;
   letter-spacing: 0.1em;
 }

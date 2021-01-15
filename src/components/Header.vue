@@ -28,23 +28,14 @@ a {
   color: black;
 }
 
-ul {
-  display: flex;
-  justify-content: flex-end;
-  list-style-type: none;
-  font-size: 20px;
-  
-  li {
-    padding: 10px 30px;
-  }
-  .bg-yellow {
-    background: $main-color;
-    border-radius: 4px;
-  }
-}
-
 header {
   display: flex;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 80px;
+  background: $gray;
+  z-index: 1;
 }
 
 .navbar-brand {
@@ -67,6 +58,25 @@ span {
 
 nav {
   width: 80%;
+  ul {
+    height: 100%;
+    margin: 0;
+    display: flex;
+    justify-content: flex-end;
+    font-size: 20px;
+    .bg-yellow {
+      background: $main-color;
+    }
+    .bg-yellow a {
+      color: white;
+    }
+  }
+  li {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px 48px;
+  }
 }
 
 @media (max-width: 768px) {

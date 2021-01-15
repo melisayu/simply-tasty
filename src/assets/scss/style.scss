@@ -1,7 +1,6 @@
 body {
-  //padding: 0 40px;
-  //margin-right: auto;
-  //margin-left: auto;
+  background-color: #F0EEF3;
+  margin: 0;
 }
 
 #app {
@@ -17,6 +16,15 @@ body {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+}
+
+.my-4 {
+  margin-top: 24px;
+  margin-bottom: 24px;
+}
+
+ul {
+  list-style-type: none;
 }
 
 @media (min-width: 768px) {
