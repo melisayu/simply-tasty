@@ -1,13 +1,16 @@
 <template>
   <header>
     <router-link class="navbar-brand" to="/">
-      <span></span>
-      simply tasty
+      <span class="logo"></span>
+      <p>
+        simply tasty
+      </p>
     </router-link>
     <nav>
       <ul>
-        <li><a>Explore</a></li>
-        <li><a>Recipes</a></li>
+        <li><a>Home</a></li>
+        <li><a>Categories</a></li>
+        <li><a>Random</a></li>
         <li class="bg-yellow"><a>About</a></li>
       </ul>
     </nav>
@@ -16,7 +19,7 @@
 
 <script>
 export default {
-  title: "Header",
+  title: "header",
 }
 </script>
 
@@ -33,27 +36,9 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  height: 80px;
+  min-height: 80px;
   background: $gray;
   z-index: 1;
-}
-
-.navbar-brand {
-  width: 20%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 22px;
-}
-
-span {
-  background: $main-color;
-  position: relative;
-  height: 50px;
-  width: 50px;
-  border-radius: 50%;
-  right: -25px;
-  z-index: -1;
 }
 
 nav {

@@ -1,5 +1,7 @@
 <template>
   <div id="app">
+    <div class="bg">
+    </div>
     <Header />
     <router-view/>
     <Footer />
@@ -7,8 +9,8 @@
 </template>
 
 <script lang="ts">
-import Header from "@/components/Header";
-import Footer from "@/components/Footer";
+import Header from "@/components/Header.vue";
+import Footer from "@/components/Footer.vue";
 
 export default {
   name: "Simply Tasty",

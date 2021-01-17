@@ -1,6 +1,9 @@
+@import '@/assets/scss/_variables.scss';
+
 body {
   background-color: #F0EEF3;
   margin: 0;
+  font-size: calc(14px + (32 - 14) * ((100vw - 220px) / (1900 - 220)));
 }
 
 #app {
@@ -9,6 +12,37 @@ body {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
+}
+
+.bg {
+  background-image: url("../images/hero-image.jpg");
+  background-size: cover;
+  position: absolute;
+  height: 92vh;
+  width: 100%;
+  z-index: -1;
+  box-shadow: inset 150px 0px 150px 0px #F0EEF3;
+}
+
+.navbar-brand {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+  p {
+    z-index: 0;
+    background: linear-gradient(50deg, $main-color, transparent);
+  }
+}
+
+span.logo {
+  background: $main-color;
+  position: relative;
+  height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  right: -25px;
 }
 
 .container {
@@ -27,6 +61,10 @@ ul {
   list-style-type: none;
 }
 
+a {
+  cursor: pointer;
+}
+
 @media (min-width: 768px) {
   .container {
     width: 750px;
@@ -42,5 +80,11 @@ ul {
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
+  }
+}
+
+@media (min-width: 1700px) {
+  .container {
+    width: 1680px;
   }
 }

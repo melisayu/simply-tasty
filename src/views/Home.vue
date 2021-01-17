@@ -1,13 +1,12 @@
 <template>
   <div class="container">
-
     <div class="hero">
-      <div class="bg">
-      </div>
       <p>Welcome</p>
       <h1>Its all simply tasty</h1>
       <p>
-        Find your tastiest recipes here. Tastiest recipes you can find on the internet.
+        Find your tastiest recipes here.
+        <br>
+        Tastiest recipes you can find on the internet.
       </p>
       <div class="my-4">
         <Button :buttonText="buttonText"></Button>
@@ -24,9 +23,9 @@
       </ul>
     </div>
 
-    <h2>Our Tastiest Recipes This Month</h2>
-    <div>
-      Card and Preview
+    <div class="featured">
+      <h2>Our Tastiest Recipes</h2>
+      <Card></Card>
     </div>
   </div>
 </template>
@@ -34,12 +33,14 @@
 <script lang="ts">
 import axios from "axios";
 
-import Button from "@/components/Button";
+import Button from "@/components/Button.vue";
+import Card from "@/components/Card.vue";
 
 export default {
   name: "home",
   components: {
     Button,
+    Card,
   },
   data() {
     return {
@@ -61,26 +62,23 @@ export default {
 
 .hero {
   text-align: left;
-  height: 50vh;
+  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
   padding: 40px;
   position: relative;
   margin-top: 80px;
-  .bg {
-    background-image: url("../assets/images/hero-image.jpg");
-    background-size: cover;
-    position: absolute;
-    height: 100%;
-    width: 100vw;
-    z-index: -1;
-    box-shadow: inset 150px 0px 150px 0px #F0EEF3;
-  }
 }
 
 .categories {
-  margin: 40px 0;
+  margin: 4em 0;
+}
+
+.featured {
+  display: grid;
+  column-gap: 16px;
+  margin-bottom: 4em;
 }
 
 ul {
@@ -94,6 +92,8 @@ ul li.category-card {
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
   transition: 0.3s;
   cursor: pointer;
+  padding: 0 10px;
+  font-size: 1.2rem;
 
   img {
     width: 100px;

@@ -1,3 +1,100 @@
 <template>
-  <footer>footer</footer>
+  <footer>
+    <div class="social-icons">
+      <svg>
+        <use xlink href="@/assets/images/icons.svg#facebook"></use>
+      </svg>
+      <svg>
+        <use xlink href="@/assets/images/icons.svg#instagram"></use>
+      </svg>
+      <svg>
+        <use xlink href="@/assets/images/icons.svg#twitter"></use>
+      </svg>
+    </div>
+    <div class="sitemap">
+      <a v-for="data in sitemap" v-bind:key="data.name" :href="data.url"> {{ data.name }} </a>
+    </div>
+    <div class="brand-wrap">
+      <p class="copyright">
+        Copyright &copy; 2021. Created by Melisa Yulia Kristina
+      </p>
+      <router-link class="navbar-brand" to="/">
+        <span class="logo"></span>
+        <p>
+          simply tasty
+        </p>
+      </router-link>
+    </div>
+  </footer>
 </template>
+
+<script>
+export default {
+  title: "footer",
+  data() {
+    return {
+      sitemap: [
+        {
+          name: "Home",
+          url: "#",
+        },
+        {
+          name: "Categories",
+          url: "#",
+        },
+        {
+          name: "Random",
+          url: "#",
+        },
+        {
+          name: "About",
+          url: "#",
+        },
+      ]
+    }
+  }
+}
+</script>
+
+<style lang="scss">
+@import "@/assets/scss/_variables.scss";
+
+footer {
+  background: $banana;
+
+  .social-icons {
+    width: 250px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    svg {
+      width: 40px;
+    }
+  }
+
+  .sitemap {
+    border-top: 1px solid $main-color;
+    padding: 40px 0;
+    margin: 0 32px;
+    a {
+      padding: 24px;
+      font-size: 18px;
+      text-decoration: underline;
+    }
+  }
+
+  .brand-wrap {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .copyright {
+    font-size: .5em;
+    padding: 0 40px;
+    display: flex;
+    align-items: center;
+    color: $dark-gray;
+  }
+}
+
+</style>
