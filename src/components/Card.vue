@@ -12,8 +12,6 @@
 </template>
 
 <script>
-import axios from "axios";
-
 import Tag from "@/components/Tag";
 
 export default {
@@ -28,10 +26,9 @@ export default {
     }
   },
   mounted() {
-    axios
-      .get("https://www.themealdb.com/api/json/v1/1/random.php")
+    this.axios
+      .get("json/v1/1/random.php")
       .then(response => {
-        console.log('responseDDdata', response.data.meals[0])
         this.item = response.data.meals[0];
         this.tags = response.data.meals[0].strTags && response.data.meals[0].strTags.split(',');
       })

@@ -31,8 +31,6 @@
 </template>
 
 <script lang="ts">
-import axios from "axios";
-
 import Button from "@/components/Button.vue";
 import Card from "@/components/Card.vue";
 
@@ -48,9 +46,9 @@ export default {
       categories: [],
     }
   },
-  mounted() {
-    axios
-      .get("https://www.themealdb.com/api/json/v1/1/categories.php")
+  created() {
+    this.axios
+      .get("/json/v1/1/categories.php")
       .then(response => (this.categories = response.data.categories));
   }
 }
