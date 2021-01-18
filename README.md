@@ -1,5 +1,7 @@
 # simply-tasty
 
+This is a simple recipe website using VueJs and public API from https://www.themealdb.com/api.php
+
 ## Project setup
 ```
 npm install
