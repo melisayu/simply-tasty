@@ -22,7 +22,7 @@ export default {
 
 a.button {
   background: $main-color;
-  padding: 12px 20px;
+  padding: 6px 10px;
   border-radius: 24px;
   color: white;
   letter-spacing: 0.1em;
@@ -34,6 +34,12 @@ a.button.secondary {
   color: $main-color;
   background: unset;
   text-transform: uppercase;
+}
+
+@media (min-width: 768px) {
+  a.button {
+    padding: 12px 20px;
+  }
 }
 
 </style>

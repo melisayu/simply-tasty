@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container random-wrapper">
     <h2>Our Tastiest Recipes</h2>
     <div class="random">
       <Card
@@ -44,10 +44,29 @@ export default {
 </script>
 
 <style lang="scss">
-.random {
-  display: grid;
-  column-gap: 16px;
-  margin-bottom: 4em;
-  grid-template-columns: repeat(4, 1fr)
+.random-wrapper {
+  margin: 8em 1em;
+
+  .random {
+    display: grid;
+    column-gap: 16px;
+    row-gap: 16px;
+    margin-bottom: 4em;
+  }
+}
+
+@media (min-width: 768px) {
+  .random-wrapper {
+    margin: 4em 0;
+    .random {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .random {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 </style>

@@ -28,6 +28,12 @@ export default {
 <style lang="scss">
 .about {
   position: relative;
-  margin: 4em 1.5em;
+  margin: 8em 1.5em;
+}
+
+@media (min-width: 1200px) {
+  .about {
+    margin: 4em 1.5em;
+  }
 }
 </style>

@@ -79,11 +79,10 @@ footer {
   }
 
   .sitemap {
-    border-top: 1px solid $main-color;
-    padding: 40px 0;
-    margin: 0 32px;
+    display: flex;
+    flex-direction: column;
     a {
-      padding: 24px;
+      padding: 8px;
       font-size: 18px;
       text-decoration: underline;
     }
@@ -92,14 +91,42 @@ footer {
   .brand-wrap {
     display: flex;
     justify-content: space-between;
+    text-align: left;
+    height: 70px;
+    position: relative;
+  }
+
+  .navbar-brand {
+    position: relative;
+    margin: 0 20px;
+    bottom: 8px;
   }
 
   .copyright {
     font-size: .5em;
-    padding: 0 40px;
+    padding: 0 20px;
     display: flex;
     align-items: center;
     color: $dark-gray;
+  }
+}
+
+@media (min-width: 992px) {
+  footer {
+    .navbar-brand {
+      position: absolute;
+      right: 0;
+      margin: 0;
+    }
+    .sitemap {
+      display: block;
+    }
+    .sitemap a {
+      padding: 24px;
+    }
+    .copyright {
+      padding: 0 40px;
+    }
   }
 }
 

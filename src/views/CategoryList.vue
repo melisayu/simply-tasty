@@ -46,10 +46,21 @@ export default {
   position: relative;
   top: 80px;
 }
+
 .category-wrap {
-  padding: 4em 0;
+  padding: 4em 1.5em;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 16px;
+}
+
+@media (min-width: 768px) {
+  .category-wrap {
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  }
+}
+
+@media (min-width: 1200px) {
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 </style>

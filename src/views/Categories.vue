@@ -41,12 +41,12 @@ export default {
 @import "@/assets/scss/_variables.scss";
 
 .categories {
-  margin: 4em 0;
+  margin: 8em 1em;
 }
 
 ul.grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
   grid-gap: 16px;
   padding: 0;
 }
@@ -64,6 +64,21 @@ ul.grid li.category-card {
 
 ul li.category-card:hover {
    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+@media (min-width: 1200px) {
+  .categories {
+    margin: 5em 0;
+  }
+  ul.grid {
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+}
+
+@media (min-width: 1700px) {
+  ul.grid {
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
 }
 
 </style>

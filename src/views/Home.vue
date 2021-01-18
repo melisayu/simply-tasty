@@ -44,12 +44,42 @@ export default {
 <style lang="scss">
 .hero {
   text-align: left;
-  height: 80vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 40px;
+  padding: 20px;
   position: relative;
   margin-top: 80px;
+
+  h1 {
+    font-size: 1.5em;
+  }
+  p {
+    margin: 0;
+  }
+}
+
+@media (min-width: 768px) {
+  .hero {
+    height: 45vh;
+    p {
+      margin: .5em 0;
+    }
+  }
+}
+
+@media (min-width: 1200px) {
+  .hero {
+    height: 80vh;
+    padding: 40px;
+
+    h1 {
+      margin: .67em 0;
+      font-size: 2em;
+    }
+    p {
+      margin: 1em 0;
+    }
+  }
 }
 </style>

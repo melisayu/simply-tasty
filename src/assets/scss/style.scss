@@ -4,7 +4,10 @@ body {
   background-color: #F0EEF3;
   margin: 0;
   font-size: calc(14px + (32 - 14) * ((100vw - 220px) / (1900 - 220)));
+  -webkit-animation: bugfix infinite 1s;
 }
+
+@-webkit-keyframes bugfix { from {padding:0;} to {padding:0;} }
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -15,10 +18,11 @@ body {
 
 .bg {
   background-image: url("../images/hero-image.jpg");
-  background-size: cover;
+  background-size: contain;
   position: absolute;
-  height: 92vh;
+  height: 100%;
   width: 100%;
+  background-repeat: no-repeat;
   z-index: -1;
   box-shadow: inset 150px 0px 150px 0px #F0EEF3;
   left: 0
@@ -46,10 +50,9 @@ span.logo {
 }
 
 .container {
-  padding-right: 15px;
-  padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  padding: 0 16px;
 }
 
 .my-4 {
@@ -72,18 +75,23 @@ a {
 @media (min-width: 768px) {
   .container {
     width: 750px;
+    padding: 0;
   }
 }
 
 @media (min-width: 992px) {
   .container {
-    width: 970px;
+    width: 940px;
   }
 }
 
 @media (min-width: 1200px) {
   .container {
     width: 1170px;
+  }
+  .bg {
+    background-size: cover;
+    height: 92vh;
   }
 }
 

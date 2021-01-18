@@ -73,10 +73,11 @@ export default {
   margin-top: 4em;
   img {
     max-height: 500px;
+    width: 100%;
   }
 
   .button-wrapper {
-    top: 48px;
+    top: 2em;
     position: relative;
   }
 
@@ -91,7 +92,7 @@ export default {
 
   .wrapper {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     margin: 4em 1em;
     h5 {
       margin-bottom: 0;
@@ -99,6 +100,18 @@ export default {
     ul {
       list-style-type: disc;
       text-align: left;
+    }
+  }
+}
+
+@media (min-width: 768px) {
+  .detail {
+    img {
+      width: auto;
+      max-width: 35%;
+    }
+    .wrapper {
+        grid-template-columns: 1fr 1fr;
     }
   }
 }

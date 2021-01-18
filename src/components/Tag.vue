@@ -29,7 +29,7 @@ export default {
   margin: 8px;
   padding: 4px 8px;
   border-radius: 4px;
-  font-size: .7em;
+  font-size: .8em;
 }
 
 </style>
