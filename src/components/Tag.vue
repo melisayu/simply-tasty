@@ -26,8 +26,10 @@ export default {
 .tags {
   border: 2px dashed $main-color;
   background: $banana;
-  margin-bottom: 8px;
-  margin-right: 8px;
+  margin: 8px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: .7em;
 }
 
 </style>

@@ -1,11 +1,11 @@
 <template>
   <div class="card">
-    <a>
-      <img v-bind:src="item.strMealThumb" />
-      <h5> {{ item.strMeal }} </h5>
-    </a>
+    <router-link :to="{path: '/detail/' + cardId}">
+      <img v-bind:src="cardPreview" />
+      <h5> {{ cardTitle }} </h5>
+    </router-link>
     <div class="tags-wrap">
-      <Tag v-for="tag in tags" v-bind:key="tag" :tagText="tag">
+      <Tag v-for="tag in cardTags" v-bind:key="tag" :tagText="tag">
       </Tag>
     </div>
   </div>
@@ -16,23 +16,15 @@ import Tag from "@/components/Tag";
 
 export default {
   name: "card",
+  props: {
+    cardTitle: String,
+    cardPreview: String,
+    cardTags: Array,
+    cardId: String,
+  },
   components: {
     Tag,
   },
-  data() {
-    return {
-      item: {},
-      tags: [],
-    }
-  },
-  mounted() {
-    this.axios
-      .get("json/v1/1/random.php")
-      .then(response => {
-        this.item = response.data.meals[0];
-        this.tags = response.data.meals[0].strTags && response.data.meals[0].strTags.split(',');
-      })
-  }
 }
 </script>
 
@@ -41,7 +33,6 @@ export default {
 
 .card {
   background: white;
-  max-width: 20%;
   padding-bottom: 16px;
   border-radius: 16px;
 

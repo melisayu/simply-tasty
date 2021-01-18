@@ -10,7 +10,7 @@ Vue.config.productionTip = false
 Vue.use({
   install() {
     Vue.prototype.axios = axios.create({
-      baseURL: 'https://www.themealdb.com/api/',
+      baseURL: 'https://www.themealdb.com/api/json/v1/1/',
     })
   }
 })

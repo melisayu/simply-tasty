@@ -28,4 +28,12 @@ a.button {
   letter-spacing: 0.1em;
 }
 
+a.button.secondary {
+  margin: 16px;
+  border: 2px dashed $main-color;
+  color: $main-color;
+  background: unset;
+  text-transform: uppercase;
+}
+
 </style>

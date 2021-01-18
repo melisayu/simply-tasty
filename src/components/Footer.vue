@@ -1,18 +1,24 @@
 <template>
   <footer>
     <div class="social-icons">
-      <svg>
-        <use xlink href="@/assets/images/icons.svg#facebook"></use>
-      </svg>
-      <svg>
-        <use xlink href="@/assets/images/icons.svg#instagram"></use>
-      </svg>
-      <svg>
-        <use xlink href="@/assets/images/icons.svg#twitter"></use>
-      </svg>
+      <a>
+        <svg>
+          <use xlink href="@/assets/images/icons.svg#facebook"></use>
+        </svg>
+      </a>
+      <a>
+        <svg>
+          <use xlink href="@/assets/images/icons.svg#instagram"></use>
+        </svg>
+      </a>
+      <a>
+        <svg>
+          <use xlink href="@/assets/images/icons.svg#twitter"></use>
+        </svg>
+      </a>
     </div>
     <div class="sitemap">
-      <a v-for="data in sitemap" v-bind:key="data.name" :href="data.url"> {{ data.name }} </a>
+      <router-link v-for="data in sitemap" v-bind:key="data.name" :to="data.url"> {{ data.name }} </router-link>
     </div>
     <div class="brand-wrap">
       <p class="copyright">
@@ -36,19 +42,19 @@ export default {
       sitemap: [
         {
           name: "Home",
-          url: "#",
+          url: "/",
         },
         {
           name: "Categories",
-          url: "#",
+          url: "/categories",
         },
         {
           name: "Random",
-          url: "#",
+          url: "/random",
         },
         {
           name: "About",
-          url: "#",
+          url: "/about",
         },
       ]
     }
@@ -68,7 +74,7 @@ footer {
     display: flex;
     justify-content: space-between;
     svg {
-      width: 40px;
+      width: 2em;
     }
   }
 

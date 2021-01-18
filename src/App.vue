@@ -1,7 +1,5 @@
 <template>
   <div id="app">
-    <div class="bg">
-    </div>
     <Header />
     <router-view/>
     <Footer />

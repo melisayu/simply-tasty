@@ -8,10 +8,10 @@
     </router-link>
     <nav>
       <ul>
-        <li><a>Home</a></li>
-        <li><a>Categories</a></li>
-        <li><a>Random</a></li>
-        <li class="bg-yellow"><a>About</a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/categories">Categories</router-link></li>
+        <li><router-link to="/random">Random</router-link></li>
+        <li class="bg-yellow"><router-link to="/about">About</router-link></li>
       </ul>
     </nav>
   </header>
