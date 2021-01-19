@@ -73,7 +73,7 @@ footer {
   background: $banana;
 
   .social-icons {
-    width: 250px;
+    width: 200px;
     margin: auto;
     display: flex;
     justify-content: space-between;
@@ -104,6 +104,16 @@ footer {
     position: relative;
     margin: 0 20px;
     bottom: 8px;
+
+    .logo {
+      height: 25px;
+      width: 25px;
+      right: -10px;
+    }
+
+    p {
+      font-size: 8px;
+    }
   }
 
   .copyright {
@@ -117,17 +127,34 @@ footer {
 
 @media (min-width: 992px) {
   footer {
+    .social-icons {
+      width: 250px;      
+    }
+
     .navbar-brand {
       position: absolute;
       right: 0;
       margin: 0;
     }
+
+    .navbar-brand p {
+      font-size: 1em;
+    }
+
+    .navbar-brand .logo {
+      height: 50px;
+      width: 50px;
+      right: -25px;
+    }
+
     .sitemap {
       display: block;
     }
+
     .sitemap a {
       padding: 24px;
     }
+
     .copyright {
       padding: 0 40px;
     }
