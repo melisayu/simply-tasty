@@ -11,20 +11,21 @@
   </div>
 </template>
 
-<script>
-import Tag from "@/components/Tag";
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import Tag from "@/components/Tag.vue";
 
-export default {
-  name: "card",
-  props: {
-    cardTitle: String,
-    cardPreview: String,
-    cardTags: Array,
-    cardId: String,
-  },
+@Component({
   components: {
     Tag,
-  },
+  }
+})
+export default class Card extends Vue {
+  name = "card"
+  @Prop() cardTitle: string
+  @Prop() cardPreview: string
+  @Prop() cardTags: Array<any>
+  @Prop() cardId: string
 }
 </script>
 

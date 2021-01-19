@@ -18,9 +18,10 @@ Praesent arcu odio, pharetra a sodales et, interdum id turpis. Cras tristique li
 </template>
 
 <script lang="ts">
+import { Vue } from 'vue-property-decorator'
 
-export default {
-  name: "about",
+export default class About extends Vue {
+  name: "about"
 }
 
 </script>

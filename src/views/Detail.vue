@@ -1,8 +1,8 @@
 <template>
   <div class="container detail">
     <img />
-    <h3> {{ data.strMeal }} </h3>
-    <img v-bind:src="data.strMealThumb" />
+    <h3> {{ meals.strMeal }} </h3>
+    <img v-bind:src="meals.strMealThumb" />
     <div class="button-wrapper">
       <Button class="secondary" :buttonText="firstButton"></Button>
       <Button class="secondary" :buttonText="secondButton"></Button>
@@ -23,7 +23,7 @@
       <div class="text-justify">
         <h5>Directions</h5>
         <p>
-          {{ data.strInstructions }}
+          {{ meals.strInstructions }}
         </p>
       </div>
     </div>
@@ -31,36 +31,45 @@
 </template>
 
 <script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import Button from "@/components/Button.vue";
 import Tag from "@/components/Tag.vue";
 
-export default {
-  name: "home",
+@Component({
   components: {
     Button,
     Tag,
   },
+})
+export default class Detail extends Vue {
+  name = "home"
+  id = ''
+  meals: any
+  ingredients: Array<any> = []
+  measures: Array<any> = []
+  tags = ''
+  axios: any
   data() {
     return {
       id: '',
-      data: {},
+      meals: {},
       firstButton: 'Print',
       secondButton: 'Share',
       ingredients: [],
       measures: [],
       tags: [],
     }
-  },
+  }
   created() {
     const { id } = this.$route.params;
     this.id = id;
     this.axios
       .get(`/lookup.php?i=${id}`)
       .then(response => {
-        this.data = response.data.meals[0];
-        this.ingredients = Object.keys(this.data).filter(item => item.includes('strIngredient')).map(key => this.data[key]).filter(name => name);
-        this.measures = Object.keys(this.data).filter(item => item.includes('strMeasure')).map(key => this.data[key]).filter(name => name);
-        this.tags = this.data.strTags && this.data.strTags.split(',');
+        this.meals = response.data.meals[0];
+        this.ingredients = Object.keys(this.meals).filter(item => item.includes('strIngredient')).map(key => this.meals[key]).filter(name => name);
+        this.measures = Object.keys(this.meals).filter(item => item.includes('strMeasure')).map(key => this.meals[key]).filter(name => name);
+        this.tags = this.meals.strTags && this.meals.strTags.split(',');
       })
   }
 }

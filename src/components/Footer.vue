@@ -34,9 +34,13 @@
   </footer>
 </template>
 
-<script>
-export default {
-  title: "footer",
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({})
+
+export default class Footer extends Vue {
+  name = "footer"
   data() {
     return {
       sitemap: [
