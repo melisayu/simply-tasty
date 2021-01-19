@@ -4,16 +4,13 @@
   </a>
 </template>
 
-<script>
-export default {
-  props: {
-    buttonText: String,
-  },
-  methods: {
-    buttonOnClick() {
-      console.log('aahhh buttonnya kepencet')
-    }
-  }
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component({})
+export default class Button extends Vue {
+  name = "button"
+  @Prop() buttonText: string
 }
 </script>
 

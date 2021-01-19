@@ -1,22 +1,19 @@
 <template>
   <div class="tags">
-    <a>
+    <p>
       {{ tagText }}
-    </a>
+    </p>
   </div>
 </template>
 
-<script>
-export default {
-  name: "tag",
-  props: {
-    tagText: String,
-  },
-  methods: {
-    buttonOnClick() {
-      console.log('CLICK TAG')
-    }
-  }
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component({})
+
+export default class Tag extends Vue {
+  name = "tag"
+  @Prop() tagText: string
 }
 </script>
 
@@ -30,6 +27,9 @@ export default {
   padding: 4px 8px;
   border-radius: 4px;
   font-size: .8em;
+  p {
+    margin: 0;
+  }
 }
 
 </style>

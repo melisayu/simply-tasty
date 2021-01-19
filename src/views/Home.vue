@@ -20,23 +20,27 @@
 </template>
 
 <script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
 import Button from "@/components/Button.vue";
 
 import Categories from "./Categories.vue";
 import Random from "./Random.vue";
 
-export default {
-  name: "home",
+@Component({
   components: {
     Button,
     Categories,
     Random,
   },
+})
+export default class Home extends Vue {
+  name = "home"
   data() {
     return {
       buttonText: "I want to eat",
     }
-  },
+  }
 }
 
 </script>

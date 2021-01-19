@@ -15,15 +15,21 @@
 </template>
 
 <script lang="ts">
-import Card from "@/components/Card.vue";
+import { Component, Vue } from 'vue-property-decorator';
 
-export default {
-  name: "categories",
+@Component({
+
+})
+
+export default class Categories extends Vue {
+  name: "categories"
+  categories: Array<any> = []
+  axios: any
   data() {
     return {
       categories: [],
     }
-  },
+  }
   /* Request to get Categories*/
   created() {
     const requestCategories = "/categories.php";
@@ -32,7 +38,7 @@ export default {
       .then(response => {
         this.categories = response.data.categories;
       })
-  },
+  }
 }
 
 </script>

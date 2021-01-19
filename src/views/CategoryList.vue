@@ -15,19 +15,26 @@
 </template>
 
 <script lang="ts">
+import { Component, Vue } from 'vue-property-decorator'
 import Card from "@/components/Card.vue";
 
-export default {
-  name: "categoryList",
+@Component({
   components: {
     Card,
   },
+})
+
+export default class CategoryList extends Vue {
+  name = 'categoryList'
+  type = ''
+  meals: Array<any> = []
+  axios: any
   data() {
     return {
       type: '',
       meals: [],
     }
-  },
+  }
   created() {
     const { type } = this.$route.params;
     this.type = type;
