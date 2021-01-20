@@ -12,16 +12,20 @@
       >
       </Card>
     </div>
+    <Button :buttonText="buttonText" :onClickFunc="randomize"></Button>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Emit } from 'vue-property-decorator';
+
+import Button from "@/components/Button.vue";
 import Card from "@/components/Card.vue";
 
 @Component({
   components: {
     Card,
+    Button,
   },
 })
 export default class Randomizer extends Vue {
@@ -32,18 +36,28 @@ export default class Randomizer extends Vue {
   data() {
     return {
       items: [],
+      buttonText: "Show me other random recipes!" // This is the random button
     }
   }
-  /* Requests to get Random Items*/
-  created() {
+  /* Requests to get random items*/
+  public getRandom() {
     const requestRandom = "/random.php";
     for (let i=0; i < 4; i++) {
       this.axios
         .get(requestRandom)
         .then(response => {
           this.items.push(response.data.meals[0])
-        })
+        });
     }
+  }
+  /* Display random items when categories component is loaded */
+  created() {
+    this.getRandom();
+  }
+  /* Function onClick "random" button */
+  randomize() {
+    this.items = [];
+    this.getRandom();
   }
 }
 
@@ -77,9 +91,4 @@ export default class Randomizer extends Vue {
   }
 }
 
-// @media (min-width: 1200px) {
-//   .random {
-//     grid-template-columns: repeat(4, 1fr);
-//   }
-// }
 </style>

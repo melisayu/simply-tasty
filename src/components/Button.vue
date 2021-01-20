@@ -1,5 +1,5 @@
 <template>
-  <a class="button">
+  <a v-on:click="onClickFunc()" class="button">
     {{ buttonText }}
   </a>
 </template>
@@ -11,6 +11,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 export default class Button extends Vue {
   name = "button"
   @Prop() buttonText: string
+  @Prop() onClickFunc
 }
 </script>
 
