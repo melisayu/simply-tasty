@@ -6,7 +6,7 @@
         <li class="category-card" v-for="category in categories" v-bind:key="category.id">
           <router-link :to="{path: '/category/' + category.strCategory}">
             <img v-bind:src="category.strCategoryThumb" />
-            <p>{{ category.strCategory }}</p>
+            <p> {{ category.strCategory }} </p>
           </router-link>
         </li>
       </ul>
@@ -17,9 +17,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component({
-
-})
+@Component({})
 
 export default class Categories extends Vue {
   name: "categories"
@@ -30,7 +28,7 @@ export default class Categories extends Vue {
       categories: [],
     }
   }
-  /* Request to get Categories*/
+  /* Request to get List of Categories*/
   created() {
     const requestCategories = "/categories.php";
     this.axios
@@ -40,7 +38,6 @@ export default class Categories extends Vue {
       })
   }
 }
-
 </script>
 
 <style lang="scss">
@@ -56,6 +53,7 @@ ul.grid {
   grid-gap: 16px;
   padding: 0;
 }
+
 ul.grid li.category-card {
   border: 1px solid $gray;
   box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
@@ -76,6 +74,7 @@ ul li.category-card:hover {
   .categories {
     margin: 5em 0;
   }
+
   ul.grid {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }

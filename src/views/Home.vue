@@ -15,7 +15,7 @@
       </div>
     </div>
     <Categories></Categories>
-    <Random></Random>
+    <RandomList></RandomList>
   </div>
 </template>
 
@@ -23,15 +23,15 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 import Button from "@/components/Button.vue";
+import RandomList from "@/components/RandomList.vue";
 
 import Categories from "./Categories.vue";
-import Random from "./Random.vue";
 
 @Component({
   components: {
     Button,
     Categories,
-    Random,
+    RandomList,
   },
 })
 export default class Home extends Vue {

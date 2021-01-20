@@ -1,6 +1,6 @@
 <template>
   <div class="container random-wrapper">
-    <h2>Our Tastiest Recipes</h2>
+    <h2>Try a Random Recipe!</h2>
     <div class="random">
       <Card
         v-for="item in items"
@@ -36,19 +36,17 @@ export default class Randomizer extends Vue {
   data() {
     return {
       items: [],
-      buttonText: "Show me other random recipes!" // This is the random button
+      buttonText: "Show me another random recipe!" // This is the random button
     }
   }
   /* Requests to get random items*/
   public getRandom() {
     const requestRandom = "/random.php";
-    for (let i=0; i < 4; i++) {
-      this.axios
-        .get(requestRandom)
-        .then(response => {
-          this.items.push(response.data.meals[0])
-        });
-    }
+    this.axios
+      .get(requestRandom)
+      .then(response => {
+        this.items.push(response.data.meals[0])
+    });
   }
   /* Display random items when categories component is loaded */
   created() {
@@ -68,26 +66,19 @@ export default class Randomizer extends Vue {
   margin: 8em 1em;
 
   .random {
-    display: grid;
-    grid-template-columns: repeat(2, (minmax(135px, 1fr)));
-    column-gap: 16px;
-    row-gap: 16px;
-    margin-bottom: 4em;
-  }
-}
-
-@media (min-width: 470px) and (max-width: 620px) {
-  .random {
-    grid-template-columns: repeat(2, 1fr) !important;
+    max-width: 500px;
+    margin: 0 auto;
+    margin-bottom: 2em;
   }
 }
 
 @media (min-width: 768px) {
   .random-wrapper {
-    margin: 4em 0;
-    .random {
-      grid-template-columns: repeat(4, 1fr);
-    }
+    position: relative;
+    top: 1em;
+  }
+  .random {
+    max-width: 80%;
   }
 }
 

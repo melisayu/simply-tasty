@@ -15,8 +15,8 @@
       <div class="text-justify">
         <h5>Ingredients</h5>
         <ul>
-          <li v-for="(measurement, i) in measures" v-bind:key="i">
-            {{ measurement + " " + ingredients[i] }}
+          <li v-for="i in ingredients" v-bind:key="i.index">
+            {{ i.measure + " " + i.ingredient }}
           </li>
         </ul>
       </div>
@@ -56,20 +56,38 @@ export default class Detail extends Vue {
       firstButton: 'Print',
       secondButton: 'Share',
       ingredients: [],
-      measures: [],
       tags: [],
     }
   }
   created() {
+    // Get a meal ID that has passed into route param
     const { id } = this.$route.params;
     this.id = id;
     this.axios
+      // Get detail information
       .get(`/lookup.php?i=${id}`)
       .then(response => {
-        this.meals = response.data.meals[0];
-        this.ingredients = Object.keys(this.meals).filter(item => item.includes('strIngredient')).map(key => this.meals[key]).filter(name => name);
-        this.measures = Object.keys(this.meals).filter(item => item.includes('strMeasure')).map(key => this.meals[key]).filter(name => name);
-        this.tags = this.meals.strTags && this.meals.strTags.split(',');
+        this.meals = response.data.meals[0]; // General detailed data
+        this.tags = this.meals.strTags && this.meals.strTags.split(','); // Split string of tags into individual tags
+
+        // A function to filter response data to get ingredients and measures
+        const filterData = (meals, prefix) => {
+          return Object.keys(meals)
+            .filter(item => item.includes(prefix))
+            .map(key => meals[key])
+            .filter(name => name && name.replace(/\s/g, '').length && name);
+        };
+
+        // Put filtered ingredients and measures into "ingredients" array of object
+        const ingredients = filterData(this.meals, 'strIngredient');
+        const measures = filterData(this.meals, 'strMeasure');
+        Object.values(ingredients).map((value, index) => {
+          this.ingredients.push({
+            "id": index + 1,
+            "ingredient": value,
+            "measure": measures[index],
+          })
+        })
       })
   }
 }
@@ -80,6 +98,7 @@ export default class Detail extends Vue {
 .detail {
   position: relative;
   margin-top: 4em;
+
   img {
     max-height: 500px;
     width: 100%;
@@ -103,9 +122,11 @@ export default class Detail extends Vue {
     display: grid;
     grid-template-columns: 1fr;
     margin: 4em 1em;
+
     h5 {
       margin-bottom: 0;
     }
+
     ul {
       list-style-type: disc;
       text-align: left;
@@ -119,6 +140,7 @@ export default class Detail extends Vue {
       width: auto;
       max-width: 35%;
     }
+
     .wrapper {
         grid-template-columns: 1fr 1fr;
     }

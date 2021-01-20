@@ -36,8 +36,10 @@ export default class CategoryList extends Vue {
     }
   }
   created() {
+    // Get category type that was chosen and passed into route param
     const { type } = this.$route.params;
     this.type = type;
+    // Get list of meals based on category
     this.axios
       .get(`/filter.php?c=${type}`)
       .then(response => {
