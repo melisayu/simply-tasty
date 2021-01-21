@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator';
+import { Component, Vue, Emit } from "vue-property-decorator";
 
 import Button from "@/components/Button.vue";
 import Card from "@/components/Card.vue";
@@ -47,7 +47,7 @@ export default class Randomizer extends Vue {
         id: "2",
         label: "Z-A",
       }],
-      selected: '',
+      selected: "",
     }
   }
   /* Display random items when component is loaded */

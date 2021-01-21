@@ -27,36 +27,53 @@
         </p>
       </div>
     </div>
+    <h5>Other meals from the same category</h5>
+    <div class="relevant">
+      <Card
+        v-for="item in relevantItems"
+        v-bind:key="item.idMeal"
+        :cardId="item.idMeal"
+        :cardTitle="item.strMeal"
+        :cardPreview="item.strMealThumb"
+      >
+      </Card>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from "vue-property-decorator";
 import Button from "@/components/Button.vue";
+import Card from "@/components/Card.vue";
 import Tag from "@/components/Tag.vue";
 
 @Component({
   components: {
     Button,
+    Card,
     Tag,
   },
 })
 export default class Detail extends Vue {
   name = "home"
-  id = ''
+  id = ""
   meals: any
   ingredients: Array<any> = []
   measures: Array<any> = []
-  tags = ''
+  tags = ""
+  type = ""
+  relevantItems: Array<any> = []
   axios: any
   data() {
     return {
-      id: '',
+      id: "",
       meals: {},
-      firstButton: 'Print',
-      secondButton: 'Share',
+      firstButton: "Print",
+      secondButton: "Share",
       ingredients: [],
       tags: [],
+      type: "",
+      relevantItems: [],
     }
   }
   created() {
@@ -68,19 +85,20 @@ export default class Detail extends Vue {
       .get(`/lookup.php?i=${id}`)
       .then(response => {
         this.meals = response.data.meals[0]; // General detailed data
-        this.tags = this.meals.strTags && this.meals.strTags.split(','); // Split string of tags into individual tags
+        this.tags = this.meals.strTags && this.meals.strTags.split(","); // Split string of tags into individual tags
+        this.type = this.meals.strCategory;
 
         // A function to filter response data to get ingredients and measures
         const filterData = (meals, prefix) => {
           return Object.keys(meals)
             .filter(item => item.includes(prefix))
             .map(key => meals[key])
-            .filter(name => name && name.replace(/\s/g, '').length && name);
+            .filter(name => name && name.replace(/\s/g, "").length && name);
         };
 
         // Put filtered ingredients and measures into "ingredients" array of object
-        const ingredients = filterData(this.meals, 'strIngredient');
-        const measures = filterData(this.meals, 'strMeasure');
+        const ingredients = filterData(this.meals, "strIngredient");
+        const measures = filterData(this.meals, "strMeasure");
         Object.values(ingredients).map((value, index) => {
           this.ingredients.push({
             "id": index + 1,
@@ -88,6 +106,19 @@ export default class Detail extends Vue {
             "measure": measures[index],
           })
         })
+      })
+  }
+  @Watch("type")
+  getRelevantItems() {
+    // Get a list of meals based on category (relevant items)
+    this.axios
+      .get(`/filter.php?c=${this.type}`)
+      .then(response => {
+        const meals = response.data.meals;
+
+        // Randomly pick 3 other meals from related category
+        const randomized = meals.sort(() => 0.5 - Math.random())
+        this.relevantItems = randomized.slice(0, 3)
       })
   }
 }
@@ -121,7 +152,7 @@ export default class Detail extends Vue {
   .wrapper {
     display: grid;
     grid-template-columns: 1fr;
-    margin: 4em 1em;
+    margin: 4em 1em 2em 1em;
 
     h5 {
       margin-bottom: 0;
@@ -130,6 +161,18 @@ export default class Detail extends Vue {
     ul {
       list-style-type: disc;
       text-align: left;
+    }
+  }
+
+  .relevant {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-gap: 16px;
+    margin: 0 1em 4em 1em;
+
+    .card * {
+      max-width: 100%;
+      margin: auto;
     }
   }
 }
@@ -143,6 +186,10 @@ export default class Detail extends Vue {
 
     .wrapper {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .relevant {
+      grid-template-columns: repeat(3, 1fr) !important;
     }
   }
 }

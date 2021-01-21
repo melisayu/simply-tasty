@@ -15,7 +15,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue } from "vue-property-decorator";
 import Card from "@/components/Card.vue";
 
 @Component({
@@ -25,8 +25,8 @@ import Card from "@/components/Card.vue";
 })
 
 export default class CategoryList extends Vue {
-  name = 'categoryList'
-  type = ''
+  name = "categoryList"
+  type = ""
   meals: Array<any> = []
   axios: any
   data() {

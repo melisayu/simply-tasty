@@ -35,7 +35,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 @Component({})
 
@@ -128,7 +128,7 @@ footer {
 @media (min-width: 992px) {
   footer {
     .social-icons {
-      width: 250px;      
+      width: 250px;
     }
 
     .navbar-brand {

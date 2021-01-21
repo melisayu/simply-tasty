@@ -20,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
+import { Component, Vue } from "vue-property-decorator";
 
 import Button from "@/components/Button.vue";
 import RandomList from "@/components/RandomList.vue";

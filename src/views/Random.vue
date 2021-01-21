@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from 'vue-property-decorator';
+import { Component, Vue, Emit } from "vue-property-decorator";
 
 import Button from "@/components/Button.vue";
 import Card from "@/components/Card.vue";
