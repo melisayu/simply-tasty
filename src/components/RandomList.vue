@@ -1,5 +1,5 @@
 <template>
-  <div class="container random-wrapper">
+  <div class="container">
     <h2>Our Tastiest Recipes</h2>
     <Select :options="sortOptions" :onChangeFunc="getSort"></Select>
     <div class="random-list">
@@ -81,35 +81,29 @@ export default class Randomizer extends Vue {
 </script>
 
 <style lang="scss">
-.random-wrapper {
-  margin: 8em 1em;
-
-  .random-list {
+.random-list {
     display: grid;
     grid-template-columns: 1fr;
     column-gap: 16px;
     row-gap: 16px;
-    margin-bottom: 4em;
+    margin-bottom: 2em;
+    margin-left: 1em;
+    margin-right: 1em;
   }
-}
 
-@media (min-width: 375px) {
+@media screen and (min-width: 375px) {
   .random-list {
     grid-template-columns: repeat(2, (minmax(135px, 1fr))) !important;
   }
 }
 
-@media (min-width: 768px) {
-  .random-wrapper {
-    margin: 4em 0;
-
-    .random-list {
-      grid-template-columns: repeat(2, 1fr) !important;
-    }
+@media screen and (min-width: 768px) {
+  .random-list {
+    grid-template-columns: repeat(2, 1fr) !important;
   }
 
-  @media (min-width: 992px) {
-    .random-wrapper .random-list {
+  @media screen and (min-width: 992px) {
+    .random-list {
       grid-template-columns: repeat(4, 1fr) !important;
     }
   }

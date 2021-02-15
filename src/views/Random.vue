@@ -1,5 +1,5 @@
 <template>
-  <div class="container random-wrapper">
+  <div class="container wrapper">
     <h2>Try a Random Recipe!</h2>
     <div class="random">
       <Card
@@ -17,7 +17,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Emit } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 
 import Button from "@/components/Button.vue";
 import Card from "@/components/Card.vue";
@@ -62,21 +62,16 @@ export default class Randomizer extends Vue {
 </script>
 
 <style lang="scss">
-.random-wrapper {
-  margin: 8em 1em;
-
-  .random {
-    max-width: 500px;
-    margin: 0 auto;
-    margin-bottom: 2em;
-  }
+.wrapper {
+  padding: 1em 16px !important;
+}
+.random {
+  max-width: 500px;
+  margin: 0 auto;
+  margin-bottom: 2em;
 }
 
-@media (min-width: 768px) {
-  .random-wrapper {
-    position: relative;
-    top: 1em;
-  }
+@media screen and (min-width: 768px) {
   .random {
     max-width: 80%;
   }

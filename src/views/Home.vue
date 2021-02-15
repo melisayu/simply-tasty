@@ -51,9 +51,9 @@ export default class Home extends Vue {
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 20px;
   position: relative;
   margin-top: 80px;
+  height: 40vh;
 
   h1 {
     font-size: 1.5em;
@@ -63,7 +63,7 @@ export default class Home extends Vue {
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .hero {
     height: 45vh;
     p {
@@ -72,9 +72,14 @@ export default class Home extends Vue {
   }
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 900px) {
   .hero {
-    height: 80vh;
+    height: calc(90vh - 80px);
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .hero {
     padding: 40px;
 
     h1 {
@@ -85,5 +90,15 @@ export default class Home extends Vue {
       margin: 1em 0;
     }
   }
+}
+
+// Ipad pro big screen
+@media only screen
+  and (min-device-width: 1024px)
+  and (max-device-width: 1366px)
+  and (-webkit-min-device-pixel-ratio: 2) {
+    .hero {
+      height: 45vh;
+    }
 }
 </style>

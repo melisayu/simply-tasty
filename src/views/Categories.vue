@@ -1,11 +1,11 @@
 <template>
   <div class="container">
-    <div class="categories">
+    <div class="wrapper categories">
       <h2>Categories</h2>
       <ul class="grid">
         <li class="category-card" v-for="category in categories" v-bind:key="category.id">
           <router-link :to="{path: '/category/' + category.strCategory}">
-            <img v-bind:src="category.strCategoryThumb" />
+            <img v-bind:src="category.strCategoryThumb" alt="Category Image"/>
             <p> {{ category.strCategory }} </p>
           </router-link>
         </li>
@@ -44,7 +44,8 @@ export default class Categories extends Vue {
 @import "@/assets/scss/_variables.scss";
 
 .categories {
-  margin: 8em 1em;
+  margin: 0 1em;
+  padding: 1em 0;
 }
 
 ul.grid {
@@ -70,17 +71,13 @@ ul li.category-card:hover {
    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-@media (min-width: 1200px) {
-  .categories {
-    margin: 5em 0;
-  }
-
+@media screen and (min-width: 1200px) {
   ul.grid {
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
 }
 
-@media (min-width: 1700px) {
+@media screen and (min-width: 1700px) {
   ul.grid {
       grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   }

@@ -1,6 +1,6 @@
 <template>
-  <div class="container">
-    <h2 class="category-type"> {{ type }} </h2>
+  <div class="container category-type wrapper">
+    <h2> {{ type }} </h2>
     <div class="category-wrap">
         <Card
           v-for="meal in meals"
@@ -53,23 +53,22 @@ export default class CategoryList extends Vue {
 <style lang="scss">
 .category-type {
   position: relative;
-  top: 80px;
 }
 
 .category-wrap {
-  padding: 4em 1.5em;
+  padding: 0 1.5em;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
   grid-gap: 16px;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .category-wrap {
     grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
   }
 }
 
-@media (min-width: 1200px) {
+@media screen and (min-width: 1200px) {
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
 }
 </style>

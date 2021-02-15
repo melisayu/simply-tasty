@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container wrapper">
     <div class="about text-justify">
       <h2>About</h2>
       <p>
@@ -25,12 +25,6 @@ export default class About extends Vue {
 <style lang="scss">
 .about {
   position: relative;
-  margin: 8em 1.5em;
-}
-
-@media (min-width: 1200px) {
-  .about {
-    margin: 4em 1.5em;
-  }
+  margin: 1em 1.5em;
 }
 </style>

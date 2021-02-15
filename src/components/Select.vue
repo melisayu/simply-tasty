@@ -38,7 +38,7 @@ export default class Select extends Vue {
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
 }
 
 </style>

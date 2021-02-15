@@ -34,7 +34,7 @@ a.button.secondary {
   text-transform: uppercase;
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   a.button {
     padding: 12px 20px;
   }

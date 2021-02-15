@@ -1,7 +1,6 @@
 <template>
-  <div class="container detail">
-    <img />
-    <h3> {{ meals.strMeal }} </h3>
+  <div class="container detail wrapper">
+    <h2> {{ meals.strMeal }} </h2>
     <img v-bind:src="meals.strMealThumb" />
     <div class="button-wrapper">
       <Button class="secondary" :buttonText="firstButton"></Button>
@@ -128,7 +127,7 @@ export default class Detail extends Vue {
 <style lang="scss">
 .detail {
   position: relative;
-  margin-top: 4em;
+  padding: 1em 16px !important;
 
   img {
     max-height: 500px;
@@ -168,7 +167,7 @@ export default class Detail extends Vue {
     display: grid;
     grid-template-columns: 1fr;
     grid-gap: 16px;
-    margin: 0 1em 4em 1em;
+    margin: 0 1em 1em 1em;
 
     .card * {
       max-width: 100%;
@@ -177,7 +176,7 @@ export default class Detail extends Vue {
   }
 }
 
-@media (min-width: 768px) {
+@media screen and (min-width: 768px) {
   .detail {
     img {
       width: auto;

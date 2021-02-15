@@ -71,6 +71,7 @@ export default class Footer extends Vue {
 
 footer {
   background: $banana;
+  margin-top: 3em;
 
   .social-icons {
     width: 200px;
@@ -125,7 +126,7 @@ footer {
   }
 }
 
-@media (min-width: 992px) {
+@media screen and (min-width: 992px) {
   footer {
     .social-icons {
       width: 250px;

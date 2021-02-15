@@ -107,7 +107,7 @@ nav {
 }
 
 /* Responsiveness for small screen (ipad and mobile) */
-@media (max-width: 768px) {
+@media screen and (max-width: 768px) {
   header {
     justify-content: space-between;
   }
@@ -161,6 +161,12 @@ nav {
         padding: 16px 0;
       }
     }
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  .navbar-brand {
+    width: 15% !important;
   }
 }
 
