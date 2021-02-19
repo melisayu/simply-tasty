@@ -70,11 +70,4 @@ export default class Randomizer extends Vue {
   margin: 0 auto;
   margin-bottom: 2em;
 }
-
-@media screen and (min-width: 768px) {
-  .random {
-    max-width: 80%;
-  }
-}
-
 </style>

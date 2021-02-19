@@ -11,7 +11,7 @@
         Tastiest recipes you can find on the internet.
       </p>
       <div class="my-4">
-        <Button :buttonText="buttonText"></Button>
+        <Button :buttonText="buttonText" :onClickFunc="redirect"></Button>
       </div>
     </div>
     <Categories></Categories>
@@ -38,8 +38,12 @@ export default class Home extends Vue {
   name = "home"
   data() {
     return {
-      buttonText: "I want to eat",
+      buttonText: "Show me something!",
     }
+  }
+  // Redirect to random page
+  redirect() {
+    this.$router.push('Random');
   }
 }
 
