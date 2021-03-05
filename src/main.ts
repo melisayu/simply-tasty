@@ -7,6 +7,7 @@ import './assets/scss/style.scss'
 
 Vue.config.productionTip = false
 
+// Remove later after everything is migrated to store
 Vue.use({
   install() {
     Vue.prototype.axios = axios.create({
@@ -14,6 +15,7 @@ Vue.use({
     })
   }
 })
+// -- Remove later after everything is migrated to store
 
 new Vue({
   router,

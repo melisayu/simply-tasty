@@ -21,21 +21,11 @@ import { Component, Vue } from "vue-property-decorator";
 
 export default class Categories extends Vue {
   name: "categories"
-  categories: Array<any> = []
-  axios: any
-  data() {
-    return {
-      categories: [],
-    }
+  get categories() {
+    return this.$store.state.categories;
   }
-  /* Request to get List of Categories*/
   created() {
-    const requestCategories = "/categories.php";
-    this.axios
-      .get(requestCategories)
-      .then(response => {
-        this.categories = response.data.categories;
-      })
+    this.$store.dispatch('getCategories');
   }
 }
 </script>
