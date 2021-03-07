@@ -2,6 +2,7 @@
   <div class="container">
     <div class="wrapper categories">
       <h2>Categories</h2>
+      <Spinner />
       <ul class="grid">
         <li class="category-card" v-for="category in categories" v-bind:key="category.id">
           <router-link :to="{path: '/category/' + category.strCategory}">
@@ -17,7 +18,13 @@
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
 
-@Component({})
+import Spinner from "@/components/Spinner.vue";
+
+@Component({
+  components: {
+    Spinner,
+  },
+})
 
 export default class Categories extends Vue {
   name: "categories"

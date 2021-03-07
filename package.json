@@ -37,6 +37,7 @@
     "sass-loader": "^8.0.2",
     "typescript": "~3.9.3",
     "vue-property-decorator": "^9.1.2",
+    "vue-simple-spinner": "^1.2.10",
     "vue-template-compiler": "^2.6.11"
   }
 }
