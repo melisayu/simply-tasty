@@ -26,25 +26,18 @@ import Card from "@/components/Card.vue";
 
 export default class CategoryList extends Vue {
   name = "categoryList"
-  type = ""
-  meals: Array<any> = []
-  axios: any
-  data() {
-    return {
-      type: '',
-      meals: [],
-    }
+  get type() {
+    return this.$store.state.categoryType;
+  }
+  get meals() {
+    return this.$store.state.mealsBasedOnCategory;
   }
   created() {
     // Get category type that was chosen and passed into route param
     const { type } = this.$route.params;
-    this.type = type;
+    this.$store.commit('setCategoryType', type)
     // Get list of meals based on category
-    this.axios
-      .get(`/filter.php?c=${type}`)
-      .then(response => {
-        this.meals = response.data.meals;
-      })
+    this.$store.dispatch('getMealsBasedOnCategory');
   }
 }
 
