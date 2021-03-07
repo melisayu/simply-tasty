@@ -10,28 +10,28 @@ export default new Vuex.Store({
     categories: [],
     categoryType: '',
     mealsBasedOnCategory: [],
-    loading: true,
-  },
-
-  mutations: {
-    setLoading(state, bool) {
-      state.loading = bool;
+    loading: false,
+    mealDetail: {
+      strCategory: '',
+      strTags: '',
     },
-
-    setCategories(state, categories) {
-      state.categories = categories;
-    },
-
-    setMealsBasedOnCategory(state, data) {
-      state.mealsBasedOnCategory = data;
-    },
-
-    setCategoryType(state, type) {
-      state.categoryType = type;
-    },
+    tags: [],
+    ingredients: {},
   },
 
   getters: {
+    mealTags(state) {
+      // Split string of tags into individual tags and return it into array
+      if (state.mealDetail.strTags) {
+        return state.mealDetail.strTags && state.mealDetail.strTags.split(",");
+      }
+    },
+
+    // Get 3 randomized relevant meals based on category
+    pickRelevantItems(state) {
+      const randomized = state.mealsBasedOnCategory.sort(() => 0.5 - Math.random());
+      return randomized.slice(0, 3);
+    }
   },
 
   actions: {
@@ -52,7 +52,69 @@ export default new Vuex.Store({
       .then(response => {
         commit('setMealsBasedOnCategory', response.data.meals);
       })
-    }
+    },
+
+    // Get detail information
+    getDetail({ commit, state, getters , dispatch}, id) {
+      commit('setLoading', true);
+      $axios.get(`/lookup.php?i=${id}`).then(response => {
+        commit('setMealDetail', response.data.meals[0]); // Detailed data
+        commit('setTags', getters.mealTags);
+        commit('setCategoryType', state.mealDetail.strCategory);
+        dispatch('filterIngredients').then(response => commit('setIngredients', response));
+        dispatch('getMealsBasedOnCategory');
+        commit('setLoading', false);
+      });
+    },
+
+    // To filter meal response data to get ingredients and measures
+    filterMealData({ state}, prefix) {
+      return Object.keys(state.mealDetail)
+        .filter(item => item.includes(prefix))
+        .map(key => state.mealDetail[key])
+        .filter(name => name && name.replace(/\s/g, "").length && name);
+    },
+
+    // Action to put filtered ingredients and measures into "ingredients" array of object
+    filterIngredients({ dispatch }) {
+      const obj = {
+        ingredients: [],
+        measures: [],
+      }
+      dispatch('filterMealData', "strIngredient").then((response) => obj.ingredients = response);
+      dispatch('filterMealData', "strMeasure").then((response) => obj.measures = response);
+      return obj;
+    },
+  },
+
+  mutations: {
+    setLoading(state, bool) {
+      state.loading = bool;
+    },
+
+    setCategories(state, categories) {
+      state.categories = categories;
+    },
+
+    setMealsBasedOnCategory(state, data) {
+      state.mealsBasedOnCategory = data;
+    },
+
+    setCategoryType(state, type) {
+      state.categoryType = type;
+    },
+
+    setMealDetail(state, data) {
+      state.mealDetail = data;
+    },
+
+    setTags(state, tags) {
+      state.tags = tags;
+    },
+
+    setIngredients(state, obj) {
+      state.ingredients = obj;
+    },
   },
 
   modules: {

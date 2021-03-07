@@ -1,7 +1,8 @@
 <template>
   <div class="container detail wrapper">
-    <h2> {{ meals.strMeal }} </h2>
-    <img v-bind:src="meals.strMealThumb" />
+    <Spinner />
+    <h2> {{ mealDetail.strMeal }} </h2>
+    <img v-bind:src="mealDetail.strMealThumb" />
     <div class="button-wrapper">
       <Button class="secondary" :buttonText="firstButton"></Button>
       <Button class="secondary" :buttonText="secondButton"></Button>
@@ -14,15 +15,15 @@
       <div class="text-justify">
         <h5>Ingredients</h5>
         <ul>
-          <li v-for="i in ingredients" v-bind:key="i.index">
-            {{ i.measure + " " + i.ingredient }}
+          <li v-for="(data, i) in ingredients.ingredients" v-bind:key="data.index">
+            {{ `${ingredients.measures[i]} ${data}` }}
           </li>
         </ul>
       </div>
       <div class="text-justify">
         <h5>Directions</h5>
         <p>
-          {{ meals.strInstructions }}
+          {{ mealDetail.strInstructions }}
         </p>
       </div>
     </div>
@@ -41,84 +42,47 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
+import { Component, Vue } from "vue-property-decorator";
 import Button from "@/components/Button.vue";
 import Card from "@/components/Card.vue";
+import Spinner from "@/components/Spinner.vue";
 import Tag from "@/components/Tag.vue";
 
 @Component({
   components: {
     Button,
     Card,
+    Spinner,
     Tag,
   },
 })
 export default class Detail extends Vue {
   name = "home"
   id = ""
-  meals: any
-  ingredients: Array<any> = []
-  measures: Array<any> = []
-  tags = ""
-  type = ""
-  relevantItems: Array<any> = []
-  axios: any
   data() {
     return {
       id: "",
-      meals: {},
       firstButton: "Print",
       secondButton: "Share",
-      ingredients: [],
-      tags: [],
-      type: "",
-      relevantItems: [],
     }
   }
+  get mealDetail() {
+    return this.$store.state.mealDetail;
+  }
+  get tags() {
+    return this.$store.state.tags;
+  }
+  get ingredients() {
+    return this.$store.state.ingredients;
+  }
+  get relevantItems() {
+    return this.$store.getters.pickRelevantItems;
+  }
   created() {
-    // Get a meal ID that has passed into route param
+    // Get a meal ID that has passed into route param and dispatch get detail
     const { id } = this.$route.params;
     this.id = id;
-    this.axios
-      // Get detail information
-      .get(`/lookup.php?i=${id}`)
-      .then(response => {
-        this.meals = response.data.meals[0]; // General detailed data
-        this.tags = this.meals.strTags && this.meals.strTags.split(","); // Split string of tags into individual tags
-        this.type = this.meals.strCategory;
-
-        // A function to filter response data to get ingredients and measures
-        const filterData = (meals, prefix) => {
-          return Object.keys(meals)
-            .filter(item => item.includes(prefix))
-            .map(key => meals[key])
-            .filter(name => name && name.replace(/\s/g, "").length && name);
-        };
-
-        // Put filtered ingredients and measures into "ingredients" array of object
-        const ingredients = filterData(this.meals, "strIngredient");
-        const measures = filterData(this.meals, "strMeasure");
-        Object.values(ingredients).map((value, index) => {
-          this.ingredients.push({
-            "id": index + 1,
-            "ingredient": value,
-            "measure": measures[index],
-          })
-        })
-      })
-  }
-  @Watch("type")
-  getRelevantItems() {
-    // Get a list of meals based on category (relevant items)
-    this.axios
-      .get(`/filter.php?c=${this.type}`)
-      .then(response => {
-        const meals = response.data.meals;
-
-        // Randomly pick 3 other meals from related category
-        const randomized = meals.sort(() => 0.5 - Math.random())
-        this.relevantItems = randomized.slice(0, 3)
-      })
+    this.$store.dispatch('getDetail', id);
   }
 }
 
