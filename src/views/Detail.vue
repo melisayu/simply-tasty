@@ -4,7 +4,7 @@
     <h2> {{ mealDetail.strMeal }} </h2>
     <img v-bind:src="mealDetail.strMealThumb" />
     <div class="button-wrapper">
-      <Button class="secondary" :buttonText="firstButton"></Button>
+      <Button class="secondary" :buttonText="firstButton" :onClickFunc="print"></Button>
       <Button class="secondary" :buttonText="secondButton"></Button>
     </div>
     <div class="tags-wrap">
@@ -83,6 +83,9 @@ export default class Detail extends Vue {
     const { id } = this.$route.params;
     this.id = id;
     this.$store.dispatch('getDetail', id);
+  }
+  print() {
+    window.print();
   }
 }
 
