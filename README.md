@@ -1,6 +1,6 @@
 # simply-tasty
 
-This is a simple recipe website using VueJs and public API from https://www.themealdb.com/api.php
+This is a simple recipe website using VueJs and public API from https://www.themealdb.com/api.php.
 For learning purpose only.
 
 ## Project setup
